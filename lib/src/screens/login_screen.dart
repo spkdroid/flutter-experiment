@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../blocs/bloc.dart';
 
 class LoginScreen extends StatelessWidget {
 
@@ -8,9 +9,8 @@ class LoginScreen extends StatelessWidget {
       margin: EdgeInsets.all(20.0),
       child: Column(
         children: [
-
           emailField(),
-        passwordField(),
+          passwordField(),
           Container(margin: EdgeInsets.only(top:25.0)),
           submitButton()
 
@@ -25,6 +25,7 @@ class LoginScreen extends StatelessWidget {
       decoration: InputDecoration(
         hintText: "your@email.com",
             labelText: "Email Text"
+          ,errorText: "Invalid Emial"
       ),
     );
   }
@@ -36,6 +37,12 @@ class LoginScreen extends StatelessWidget {
         hintText: "Password",
         labelText: "Password"
       ),
+
+      onChanged: (newValue) {
+         bloc.emailController.sink.add(newValue);
+      },
+
+
     );
   }
 
