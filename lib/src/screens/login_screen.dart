@@ -5,7 +5,6 @@ class LoginScreen extends StatelessWidget {
 
   Widget build(context) {
     return Container(
-
       margin: EdgeInsets.all(20.0),
       child: Column(
         children: [
@@ -13,20 +12,25 @@ class LoginScreen extends StatelessWidget {
           passwordField(),
           Container(margin: EdgeInsets.only(top:25.0)),
           submitButton()
-
         ],
       ),
     );
   }
 
   Widget emailField() {
-    return TextField(
-      keyboardType: TextInputType.emailAddress,
-      decoration: InputDecoration(
-        hintText: "your@email.com",
-            labelText: "Email Text"
-          ,errorText: "Invalid Emial"
-      ),
+
+    return StreamBuilder(
+      stream: bloc.email,
+      builder: (context,snapshot) {
+        return TextField(
+          keyboardType: TextInputType.emailAddress,
+          decoration: InputDecoration(
+              hintText: "your@email.com",
+              labelText: "Email Text"
+              ,errorText: snapshot.error,
+          ),
+        );
+      },
     );
   }
 
@@ -39,7 +43,6 @@ class LoginScreen extends StatelessWidget {
       ),
 
       onChanged: (newValue) {
-         bloc.emailController.sink.add(newValue);
       },
 
 

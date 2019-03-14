@@ -1,6 +1,6 @@
 import 'dart:async';
 
-    class Validators {
+class Validators {
 
   final validateEmail = StreamTransformer<String,String>.fromHandlers(
     handleData: (email, sink) {
@@ -17,10 +17,8 @@ import 'dart:async';
       if(password.length > 3){
         sink.add(password);
       } else {
-        sink.addError('Password must be atleast 4 character')
+        sink.addError('Password must be atleast 4 character');
       }
     }
   );
-
-
-    }
+}
